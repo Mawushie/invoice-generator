@@ -5,29 +5,65 @@ import { Container } from "./Components/Styles/MainContainer";
 import "./Scss/app.scss";
 
 function App() {
+  const servicesRequested = new Set();
+  const serviceCost = new Set();
   const AddWash = () => {
     let task = "Wash Car";
-    document.getElementById("task").innerHTML += `<p>${task}</p>`;
     let washCarAmount = "$10";
-    let carWash = document.getElementById("amount");
-    carWash.innerHTML += `<p> ${washCarAmount}</p>`;
+    servicesRequested.add(task);
+    serviceCost.add(washCarAmount);
+    let finalTasks = "";
+    let finalAmount = "";
+    servicesRequested.forEach(function (value) {
+      finalTasks += `<p>${value} </p>`;
+    });
+    document.getElementById("task").innerHTML = finalTasks;
+
+    serviceCost.forEach(function (value) {
+      finalAmount += `<p>${value} </p>`;
+    });
+    document.getElementById("task").innerHTML = finalTasks;
+    document.getElementById("amount").innerHTML = finalAmount;
   };
 
   const AddMowing = () => {
     let task = "Mow Lawn";
-    document.getElementById("task").innerHTML += `<p>${task}</p>`;
     let mowLawnAmount = "$20";
-    let mowLawn = document.getElementById("amount");
-    mowLawn.innerHTML += `<p> ${mowLawnAmount}</p>`;
+    servicesRequested.add(task);
+    serviceCost.add(mowLawnAmount);
+    let finalTasks = "";
+    let finalAmount = "";
+    servicesRequested.forEach(function (value) {
+      finalTasks += `<p>${value} </p>`;
+    });
+    document.getElementById("task").innerHTML = finalTasks;
+
+    serviceCost.forEach(function (value) {
+      finalAmount += `<p>${value} </p>`;
+    });
+    document.getElementById("task").innerHTML = finalTasks;
+    document.getElementById("amount").innerHTML = finalAmount;
   };
 
   const AddPulling = () => {
     let task = "Pull Weeds";
-    document.getElementById("task").innerHTML += `<p>${task}</p>`;
     let pullWeedsAmount = "$30";
-    let pullWeeds = document.getElementById("amount");
-    pullWeeds.innerHTML += `<p> ${pullWeedsAmount}</p>`;
+    servicesRequested.add(task);
+    serviceCost.add(pullWeedsAmount);
+    let finalTasks = "";
+    let finalAmount = "";
+    servicesRequested.forEach(function (value) {
+      finalTasks += `<p>${value} </p>`;
+    });
+    document.getElementById("task").innerHTML = finalTasks;
+
+    serviceCost.forEach(function (value) {
+      finalAmount += `<p>${value} </p>`;
+    });
+    document.getElementById("task").innerHTML = finalTasks;
+    document.getElementById("amount").innerHTML = finalAmount;
   };
+
   return (
     <Div>
       <Container>
