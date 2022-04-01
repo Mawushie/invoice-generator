@@ -82,12 +82,12 @@ function App() {
           <ButtonDiv>
             <div>
               <p>TASK</p>
-              <div id="task"></div>
+              <div id="task" style={{ fontSize: 20 }}></div>
             </div>
             <div>
               <p>TOTAL</p>
               <div>
-                <div id="amount" style={{ float: "right" }}></div>
+                <div id="amount" style={{ float: "right", fontSize: 20 }}></div>
               </div>
             </div>
           </ButtonDiv>
