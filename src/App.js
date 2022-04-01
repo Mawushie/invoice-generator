@@ -7,61 +7,55 @@ import "./Scss/app.scss";
 function App() {
   const servicesRequested = new Set();
   const serviceCost = new Set();
-  const AddWash = () => {
-    let task = "Wash Car";
-    let washCarAmount = "$10";
-    servicesRequested.add(task);
-    serviceCost.add(washCarAmount);
-    let finalTasks = "";
-    let finalAmount = "";
-    servicesRequested.forEach(function (value) {
-      finalTasks += `<p>${value} </p>`;
-    });
-    document.getElementById("task").innerHTML = finalTasks;
-
-    serviceCost.forEach(function (value) {
-      finalAmount += `<p>${value} </p>`;
-    });
-    document.getElementById("task").innerHTML = finalTasks;
-    document.getElementById("amount").innerHTML = finalAmount;
+  const Add = () => {
+    let serviceCostArray = [...serviceCost];
+    let totalAmount = 0;
+    for (let i = 0; i < serviceCostArray.length; i++) {
+      totalAmount += serviceCostArray[i];
+    }
+    document.getElementById("totalAmount").innerHTML = `$${totalAmount}`;
   };
 
-  const AddMowing = () => {
-    let task = "Mow Lawn";
-    let mowLawnAmount = "$20";
-    servicesRequested.add(task);
-    serviceCost.add(mowLawnAmount);
-    let finalTasks = "";
-    let finalAmount = "";
+  const invoiceCalculator = (e) => {
+    let btnId = e.target.id;
+    if (btnId === "washCar") {
+      let task = "Wash Car";
+      servicesRequested.add(task);
+      serviceCost.add(10);
+    }
+
+    if (btnId === "mowLawn") {
+      let task = "Mow Lawn";
+      servicesRequested.add(task);
+      serviceCost.add(20);
+    }
+
+    if (btnId === "pullWeeds") {
+      let task = "Pull Weeds";
+      servicesRequested.add(task);
+      serviceCost.add(30);
+    }
+
+    let tasks = "";
+    let amount = "";
     servicesRequested.forEach(function (value) {
-      finalTasks += `<p>${value} </p>`;
+      tasks += `<p>${value} </p>`;
     });
-    document.getElementById("task").innerHTML = finalTasks;
+    document.getElementById("task").innerHTML = tasks;
 
     serviceCost.forEach(function (value) {
-      finalAmount += `<p>${value} </p>`;
+      amount += `<p>$${value} </p>`;
     });
-    document.getElementById("task").innerHTML = finalTasks;
-    document.getElementById("amount").innerHTML = finalAmount;
+    document.getElementById("task").innerHTML = tasks;
+    document.getElementById("amount").innerHTML = amount;
+
+    Add();
   };
 
-  const AddPulling = () => {
-    let task = "Pull Weeds";
-    let pullWeedsAmount = "$30";
-    servicesRequested.add(task);
-    serviceCost.add(pullWeedsAmount);
-    let finalTasks = "";
-    let finalAmount = "";
-    servicesRequested.forEach(function (value) {
-      finalTasks += `<p>${value} </p>`;
-    });
-    document.getElementById("task").innerHTML = finalTasks;
-
-    serviceCost.forEach(function (value) {
-      finalAmount += `<p>${value} </p>`;
-    });
-    document.getElementById("task").innerHTML = finalTasks;
-    document.getElementById("amount").innerHTML = finalAmount;
+  const sendInvoice = () => {
+    document.getElementById("task").innerHTML = "";
+    document.getElementById("amount").innerHTML = "";
+    document.getElementById("totalAmount").innerHTML = "";
   };
 
   return (
@@ -74,13 +68,13 @@ function App() {
 
         <Content>
           <ButtonDiv>
-            <Button onClick={AddWash} id="washCar">
+            <Button onClick={invoiceCalculator} id="washCar">
               Wash Car: $10
             </Button>
-            <Button id="mowLawn" onClick={AddMowing}>
+            <Button id="mowLawn" onClick={invoiceCalculator}>
               Mow Lawn: $20
             </Button>
-            <Button id="pullWeeds" onClick={AddPulling}>
+            <Button id="pullWeeds" onClick={invoiceCalculator}>
               Pull Weeds: $30
             </Button>
           </ButtonDiv>
@@ -92,8 +86,8 @@ function App() {
             </div>
             <div>
               <p>TOTAL</p>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <div id="amount"></div>
+              <div>
+                <div id="amount" style={{ float: "right" }}></div>
               </div>
             </div>
           </ButtonDiv>
@@ -103,15 +97,17 @@ function App() {
           <ButtonDiv>
             <div>
               <p>NOTES</p>
-              <p id="notes">Notes here</p>
+              <p id="notes">We accept cash, credit card, or PayPal</p>
             </div>
             <div>
               <p>TOTAL AMOUNT</p>
-              <p id="totalAmount">$20</p>
+              <p id="totalAmount" style={{ float: "right", fontSize: 32 }}>
+                $0
+              </p>
             </div>
           </ButtonDiv>
 
-          <SendButton>
+          <SendButton onClick={sendInvoice}>
             <img src="email.svg" style={{ marginRight: 10 }} />
             Send Invoice
           </SendButton>
