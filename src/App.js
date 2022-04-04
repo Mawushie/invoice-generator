@@ -55,7 +55,7 @@ function App() {
   const sendInvoice = () => {
     document.getElementById("task").innerHTML = "";
     document.getElementById("amount").innerHTML = "";
-    document.getElementById("totalAmount").innerHTML = "";
+    document.getElementById("totalAmount").innerHTML = "$0";
   };
 
   return (
